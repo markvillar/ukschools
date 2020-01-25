@@ -44,6 +44,15 @@ class MapViewController: UIViewController {
     
     fileprivate func getSchools(bounds: Bounds, completion: @escaping ([School]?, Error?) -> ()) {
         
+        let spinner = SpinnerViewController()
+        
+        //Add a spinner
+        addChild(spinner)
+        spinner.view.frame = view.frame
+        
+        view.addSubview(spinner.view)
+        spinner.didMove(toParent: self)
+        
         var request = URLRequest(url: apiURL!)
         
         request.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -88,6 +97,14 @@ class MapViewController: UIViewController {
             }
             
         }.resume()
+        
+        // Wait for 0.2 Seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            // Remove the spinner view controller
+            spinner.willMove(toParent: nil)
+            spinner.view.removeFromSuperview()
+            spinner.removeFromParent()
+        }
         
     }
     
