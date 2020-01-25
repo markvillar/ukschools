@@ -62,6 +62,7 @@
 		4D20A3C923DC70010016B8F9 /* UKSchools */ = {
 			isa = PBXGroup;
 			children = (
+				4D3E065223DCF31D006256EF /* Utilities */,
 				4D6AB59023DC894C003E0421 /* Model */,
 				4D6AB58C23DC77CC003E0421 /* Controller */,
 				4D20A3CA23DC70010016B8F9 /* AppDelegate.swift */,
@@ -74,11 +75,18 @@
 			path = UKSchools;
 			sourceTree = "<group>";
 		};
+		4D3E065223DCF31D006256EF /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4D6AB59323DC9091003E0421 /* AlertController.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		4D6AB58C23DC77CC003E0421 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				4D6AB58D23DC7806003E0421 /* MapViewController.swift */,
-				4D6AB59323DC9091003E0421 /* AlertController.swift */,
 				4D6AB59523DCB236003E0421 /* SpinnerViewController.swift */,
 			);
 			path = Controller;
