@@ -51,8 +51,6 @@ class MapViewController: UIViewController {
         
         let area = Bounds(latitudeNorth: bounds.latitudeNorth, latitudeSouth: bounds.latitudeSouth, longitudeEast: bounds.longitudeEast, longitudeWest: bounds.longitudeWest)
         
-        //        let area = Bounds(latitudeNorth: "51.54126776718752", latitudeSouth: "51.48964361688991", longitudeEast: "-0.1391464811950982", longitudeWest: "-0.1890868820194953")
-        
         request.httpMethod = "POST"
         
         do {
