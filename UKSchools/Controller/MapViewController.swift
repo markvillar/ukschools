@@ -124,6 +124,11 @@ extension MapViewController: MKMapViewDelegate {
         
     }
     
+    
+    /// Delegate function that calls the API when the user scrolls or pans around the map
+    /// - Parameters:
+    ///   - mapView: MKMapView
+    ///   - animated: Bool
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
         mapView.annotations.forEach { annotation in
@@ -150,18 +155,28 @@ extension MapViewController: MKMapViewDelegate {
             }
             
             if let resultingSchools = schools {
-                resultingSchools.forEach { school in
+                resultingSchools.forEach { [weak self] school in
                     
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = CLLocationCoordinate2D(latitude: school.latitude, longitude: school.longitude)
-                    annotation.title = school.school_name
-                    annotation.subtitle = "School"
+                    self?.addAnnotation(school: school)
                     
-                    mapView.addAnnotation(annotation)
                 }
             }
             
         }
+        
+    }
+    
+    /// Creates a red pin annotation for a school on the map
+    /// - Parameter school: School
+    fileprivate func addAnnotation(school: School) {
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: school.latitude, longitude: school.longitude)
+        annotation.title = school.school_name
+        annotation.subtitle = "School"
+        
+        mapView.addAnnotation(annotation)
+        
     }
     
 }
