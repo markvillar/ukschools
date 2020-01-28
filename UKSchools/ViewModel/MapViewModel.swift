@@ -1,5 +1,5 @@
 //
-//  MapViewController.swift
+//  MapViewModel.swift
 //  UKSchools
 //
 //  Created by Mark on 25/01/2020.
@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+class MapViewModel: UIViewController {
     
     let apiURL = URL(string: "https://ukschools.guide:4000/map-demo")
     
@@ -112,7 +112,7 @@ class MapViewController: UIViewController {
 
 
 //MapKit Delegate
-extension MapViewController: MKMapViewDelegate {
+extension MapViewModel: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
