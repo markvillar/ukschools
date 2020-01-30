@@ -60,12 +60,6 @@ class NetworkLayer {
             
         }.resume()
         
-        // Wait for 0.2 Seconds
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-//            // Remove the spinner view controller
-//            self?.removeSpinner(spinner: spinner)
-//        }
-        
     }
     
 }

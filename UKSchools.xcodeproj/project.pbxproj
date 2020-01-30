@@ -15,7 +15,6 @@
 		4D6AB58E23DC7806003E0421 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6AB58D23DC7806003E0421 /* MapViewModel.swift */; };
 		4D6AB59223DC8962003E0421 /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6AB59123DC8962003E0421 /* School.swift */; };
 		4D6AB59423DC9091003E0421 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6AB59323DC9091003E0421 /* AlertController.swift */; };
-		4D6AB59623DCB236003E0421 /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6AB59523DCB236003E0421 /* SpinnerViewController.swift */; };
 		4D8BE4E823E054610005AB5F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BE4E723E054610005AB5F /* MapView.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,7 +29,6 @@
 		4D6AB58D23DC7806003E0421 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		4D6AB59123DC8962003E0421 /* School.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
 		4D6AB59323DC9091003E0421 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
-		4D6AB59523DCB236003E0421 /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		4D8BE4E723E054610005AB5F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,7 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				4D6AB59323DC9091003E0421 /* AlertController.swift */,
-				4D6AB59523DCB236003E0421 /* SpinnerViewController.swift */,
 				4D15556E23E3523E00A70959 /* NetworkLayer.swift */,
 			);
 			path = Utilities;
@@ -187,7 +184,6 @@
 				4D6AB58E23DC7806003E0421 /* MapViewModel.swift in Sources */,
 				4D15556F23E3523E00A70959 /* NetworkLayer.swift in Sources */,
 				4D20A3CD23DC70010016B8F9 /* SceneDelegate.swift in Sources */,
-				4D6AB59623DCB236003E0421 /* SpinnerViewController.swift in Sources */,
 				4D6AB59223DC8962003E0421 /* School.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

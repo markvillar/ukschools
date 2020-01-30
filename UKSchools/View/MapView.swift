@@ -30,30 +30,6 @@ class MapView: UIViewController {
         setupView()
     }
     
-    // Add spinner to the view
-    fileprivate func createSpinner() -> SpinnerViewController {
-        
-        let spinner = SpinnerViewController()
-        
-        //Add a spinner
-        addChild(spinner)
-        spinner.view.frame = view.frame
-        
-        view.addSubview(spinner.view)
-        spinner.didMove(toParent: self)
-        
-        return spinner
-    }
-    
-    // Remove the spinner view controller
-    fileprivate func removeSpinner(spinner: SpinnerViewController) {
-        
-        spinner.willMove(toParent: nil)
-        spinner.view.removeFromSuperview()
-        spinner.removeFromParent()
-        
-    }
-    
     fileprivate func getCoordinateBounds(region: MKCoordinateRegion) -> Bounds {
         
         // Get the bounding region of the map
