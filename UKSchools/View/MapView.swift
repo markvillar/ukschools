@@ -32,14 +32,7 @@ class MapView: UIViewController {
     
     fileprivate func getSchools(bounds: Bounds, completion: @escaping ([School]?, Error?) -> ()) {
         
-        let spinner = SpinnerViewController()
-        
-        //Add a spinner
-        addChild(spinner)
-        spinner.view.frame = view.frame
-        
-        view.addSubview(spinner.view)
-        spinner.didMove(toParent: self)
+        let pin = createPin()
         
         var request = URLRequest(url: apiURL!)
         
@@ -87,12 +80,34 @@ class MapView: UIViewController {
         }.resume()
         
         // Wait for 0.2 Seconds
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             // Remove the spinner view controller
-            spinner.willMove(toParent: nil)
-            spinner.view.removeFromSuperview()
-            spinner.removeFromParent()
+            self?.removePin(spinner: pin)
         }
+        
+    }
+    
+    // Add spinner to the view
+    fileprivate func createPin() -> SpinnerViewController {
+        
+        let spinner = SpinnerViewController()
+        
+        //Add a spinner
+        addChild(spinner)
+        spinner.view.frame = view.frame
+        
+        view.addSubview(spinner.view)
+        spinner.didMove(toParent: self)
+        
+        return spinner
+    }
+    
+    // Remove the spinner view controller
+    fileprivate func removePin(spinner: SpinnerViewController) {
+        
+        spinner.willMove(toParent: nil)
+        spinner.view.removeFromSuperview()
+        spinner.removeFromParent()
         
     }
     
