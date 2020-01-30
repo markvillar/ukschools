@@ -11,7 +11,7 @@ import MapKit
 
 class MapView: UIViewController {
     
-    let apiURL = URL(string: "https://ukschools.guide:4000/map-demo")
+    let network: NetworkLayer = NetworkLayer()
     
     let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     
@@ -28,63 +28,6 @@ class MapView: UIViewController {
         super.viewWillAppear(animated)
         
         setupView()
-    }
-    
-    fileprivate func getSchools(bounds: Bounds, completion: @escaping ([School]?, Error?) -> ()) {
-        
-        let spinner = createSpinner()
-        
-        var request = URLRequest(url: apiURL!)
-        
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let area = Bounds(latitudeNorth: bounds.latitudeNorth, latitudeSouth: bounds.latitudeSouth, longitudeEast: bounds.longitudeEast, longitudeWest: bounds.longitudeWest)
-        
-        request.httpMethod = "POST"
-        
-        do {
-            let body = try JSONEncoder().encode(area)
-            request.httpBody = body
-        } catch {
-            print("Failed to encode: ", error)
-        }
-        
-        // Send the request
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            // Check for error
-            if let err = error {
-                completion(nil, err)
-                print("Failed to encode data: ", err)
-                return
-            }
-            
-            // Check if the response contains some decodable data
-            if let data = data {
-                
-                // Proceed to decode the data
-                do {
-                    let retrievedData = try JSONDecoder().decode([School].self, from: data)
-                    
-                    DispatchQueue.main.async {
-                        completion(retrievedData, nil)
-                    }
-                    
-                } catch let jsonError {
-                    AlertController.customAlert(title: "Decoding Error", message: jsonError.localizedDescription, on: self)
-                }
-                
-            }
-            
-        }.resume()
-        
-        // Wait for 0.2 Seconds
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-            // Remove the spinner view controller
-            self?.removeSpinner(spinner: spinner)
-        }
-        
     }
     
     // Add spinner to the view
@@ -174,7 +117,7 @@ extension MapView: MKMapViewDelegate {
         let bounds = getCoordinateBounds(region: mapView.region)
         
         //Retrive the schools from the API
-        getSchools(bounds: bounds) { schools, error in
+        self.network.getSchools(bounds: bounds) { schools, error in
             
             if let error = error {
                 AlertController.customAlert(title: "Retrieve Error", message: error.localizedDescription, on: self)

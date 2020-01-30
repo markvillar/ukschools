@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D15556F23E3523E00A70959 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15556E23E3523E00A70959 /* NetworkLayer.swift */; };
 		4D20A3CB23DC70010016B8F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20A3CA23DC70010016B8F9 /* AppDelegate.swift */; };
 		4D20A3CD23DC70010016B8F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D20A3CC23DC70010016B8F9 /* SceneDelegate.swift */; };
 		4D20A3D423DC70060016B8F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D20A3D323DC70060016B8F9 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D15556E23E3523E00A70959 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		4D20A3C723DC70010016B8F9 /* UKSchools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UKSchools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D20A3CA23DC70010016B8F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D20A3CC23DC70010016B8F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			children = (
 				4D6AB59323DC9091003E0421 /* AlertController.swift */,
 				4D6AB59523DCB236003E0421 /* SpinnerViewController.swift */,
+				4D15556E23E3523E00A70959 /* NetworkLayer.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				4D20A3CB23DC70010016B8F9 /* AppDelegate.swift in Sources */,
 				4D6AB59423DC9091003E0421 /* AlertController.swift in Sources */,
 				4D6AB58E23DC7806003E0421 /* MapViewModel.swift in Sources */,
+				4D15556F23E3523E00A70959 /* NetworkLayer.swift in Sources */,
 				4D20A3CD23DC70010016B8F9 /* SceneDelegate.swift in Sources */,
 				4D6AB59623DCB236003E0421 /* SpinnerViewController.swift in Sources */,
 				4D6AB59223DC8962003E0421 /* School.swift in Sources */,
