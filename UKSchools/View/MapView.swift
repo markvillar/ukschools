@@ -11,9 +11,9 @@ import MapKit
 
 class MapView: UIViewController {
     
-    let network: NetworkLayer = NetworkLayer()
+    var mapViewModel: MapViewModel!
     
-    let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+    private let network: NetworkLayer = NetworkLayer()
     
     let mapView: MKMapView = MKMapView()
     
@@ -22,6 +22,7 @@ class MapView: UIViewController {
         
         mapView.delegate = self
         mapView.isScrollEnabled = true
+        mapViewModel = MapViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,25 +31,11 @@ class MapView: UIViewController {
         setupView()
     }
     
-    fileprivate func getCoordinateBounds(region: MKCoordinateRegion) -> Bounds {
-        
-        // Get the bounding region of the map
-        let south = region.center.latitude - (region.span.latitudeDelta / 2.0);
-        let north = region.center.latitude + (region.span.latitudeDelta / 2.0);
-        
-        let west = region.center.longitude - (region.span.longitudeDelta / 2.0);
-        let east = region.center.longitude + (region.span.longitudeDelta / 2.0);
-        
-        //Create the bounds
-        let bounds = Bounds(latitudeNorth: north, latitudeSouth: south, longitudeEast: east, longitudeWest: west)
-        
-        return bounds
-    }
-    
     fileprivate func setupView() {
         navigationItem.title = "UK Schools"
         
         let coordinate = CLLocationCoordinate2D(latitude: 51.523140, longitude: -0.119211)
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let region = MKCoordinateRegion(center: coordinate, span: span)
         
         mapView.setRegion(region, animated: true)
@@ -87,12 +74,12 @@ extension MapView: MKMapViewDelegate {
         
         //Create loading indicator
         let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-
+        
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.style = UIActivityIndicatorView.Style.large
         loadingIndicator.startAnimating();
-
+        
         alert.view.addSubview(loadingIndicator)
         present(alert, animated: true, completion: nil)
         
@@ -101,7 +88,7 @@ extension MapView: MKMapViewDelegate {
             mapView.removeAnnotation(annotation)
         }
         
-        let bounds = getCoordinateBounds(region: mapView.region)
+        let bounds = mapViewModel.getCoordinateBounds(region: mapView.region)
         
         //Retrive the schools from the API
         self.network.getSchools(bounds: bounds) { schools, error in
