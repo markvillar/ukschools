@@ -54,10 +54,19 @@ class MapView: UIViewController {
 //MapKit Delegate
 extension MapView: MKMapViewDelegate {
     
+    /// Delegate function that is called when user selects/taps an annotation
+    /// - Parameters:
+    ///   - mapView: MKMapView
+    ///   - view: MKAnnotationView
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
-        mapView.setCenter(view.annotation!.coordinate, animated: true)
+        //Center the selected annotation
+        if let viewAnnotation = view.annotation {
+            let coordinate = viewAnnotation.coordinate
+            mapView.setCenter(coordinate, animated: true)
+        }
         
+        //Change the title to the annotated school's name
         if let title = view.annotation?.title {
             self.navigationItem.title = title
         }
@@ -70,7 +79,7 @@ extension MapView: MKMapViewDelegate {
     ///   - animated: Bool
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
-        //Create loading indicator
+        //Show a loading indicator
         let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
         
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
