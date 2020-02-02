@@ -20,6 +20,7 @@ class MapView: UIViewController {
         
         mapView.delegate = self
         mapView.isScrollEnabled = true
+        mapView.isRotateEnabled = false
         mapViewModel = MapViewModel()
     }
     
