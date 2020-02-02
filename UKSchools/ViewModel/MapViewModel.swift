@@ -11,9 +11,9 @@ import MapKit
 
 struct MapViewModel {
     
-    let network = NetworkLayer()
+    private let network = NetworkLayer()
     
-    func getCoordinateBounds(region: MKCoordinateRegion) -> Bounds {
+    func getSchools(region: MKCoordinateRegion, completion: @escaping ([School]?, Error?)->()) {
         
         // Get the bounding region of the map
         let south = region.center.latitude - (region.span.latitudeDelta / 2.0);
@@ -25,7 +25,19 @@ struct MapViewModel {
         //Create the bounds
         let bounds = Bounds(latitudeNorth: north, latitudeSouth: south, longitudeEast: east, longitudeWest: west)
         
-        return bounds
+        //Retrive the schools from the API
+        self.network.getSchools(bounds: bounds) { schools, error in
+            
+            if let error = error {
+                completion(nil, error)
+            }
+            
+            if let resultingSchools = schools {
+                completion(resultingSchools, nil)
+            }
+            
+        }
+        
     }
     
 }

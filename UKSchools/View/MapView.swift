@@ -13,8 +13,6 @@ class MapView: UIViewController {
     
     var mapViewModel: MapViewModel!
     
-    private let network: NetworkLayer = NetworkLayer()
-    
     let mapView: MKMapView = MKMapView()
     
     override func viewDidLoad() {
@@ -88,27 +86,20 @@ extension MapView: MKMapViewDelegate {
             mapView.removeAnnotation(annotation)
         }
         
-        let bounds = mapViewModel.getCoordinateBounds(region: mapView.region)
-        
-        //Retrive the schools from the API
-        self.network.getSchools(bounds: bounds) { schools, error in
+        _ = mapViewModel.getSchools(region: mapView.region) { result, err in
             
-            if let error = error {
-                AlertController.customAlert(title: "Retrieve Error", message: error.localizedDescription, on: self)
+            guard let schools = result else {
+                AlertController.customAlert(title: "Retrieve Error", message: err!.localizedDescription, on: self)
+                return
             }
             
-            if let resultingSchools = schools {
-                resultingSchools.forEach { [weak self] school in
-                    
-                    self?.addAnnotation(school: school)
-                    
-                }
+            //Add annotation for each school
+            schools.forEach { [weak self] school in
+                self?.addAnnotation(school: school)
             }
-            
         }
         
         dismiss(animated: false, completion: nil)
-        
     }
     
     /// Creates a red pin annotation for a school on the map
