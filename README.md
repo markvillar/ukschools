@@ -9,3 +9,4 @@ The schools and their coordinates are retrieved from `https://ukschools.guide:40
 ### Screenshots
 <img align="left" src="Screenshots/screen1.png" width="270" height="500" />
 <img align="left" src="Screenshots/screen2.png" width="270" height="500" />
+<img align="left" src="Screenshots/screen3.png" width="270" height="500" />
